@@ -1,4 +1,4 @@
-# CTF_ziplookup
+# CTF Zip Lookup
 Self made CTF challenge that based on reDOS vulnerability
 
 *Ref:*

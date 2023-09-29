@@ -1,5 +1,5 @@
 # CTF Zip Lookup
-Self made CTF challenge that based on reDOS vulnerability
+Self made CTF challenge that based on reDOS vulnerability. *The challenge should be used for demonstration only*.
 
 *Ref:*
 1. [OWASP Regular expression Denial of Service](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS)

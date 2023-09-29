@@ -52,7 +52,7 @@ if(defined($zip) and $zip ne ''){
 }
 my $end = time();
 my $time = $end - $start;
-if ($time > 50) {
+if ($time > 30) {
     my @content = &_DB("/flag.txt");
 	$res = "Content-type: text/plain\n\n$content[0]\n";
 }

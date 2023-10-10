@@ -1,7 +1,10 @@
 #!/usr/bin/perl
+
 use warnings;
 use CGI;
 use Fcntl qw(:flock);
+use POSIX qw(alarm);
+use sigtrap qw(handler _HANDLER ALRM);
 
 sub _SANITIZING {
 	my($str) = @_;
@@ -33,11 +36,18 @@ sub _DB {
 	return @loader;
 }
 
+sub _HANDLER {
+	print $cgi->header(-status => '400 Bad Request', -type => 'text/plain');
+	print "Oops! Too long\n";
+	exit;
+}
+
 my $cgi = CGI->new;
 my $zip = $cgi->param('zipcode');
 my $res = "Content-type: text/plain\n\n";
 
 my $start = time();
+alarm 60;
 if(defined($zip) and $zip ne ''){
 	$zip = &_SANITIZING($zip);
 	my $path = sprintf("./%02d.cgi",substr($zip,0,2));
@@ -50,10 +60,11 @@ if(defined($zip) and $zip ne ''){
 		}
 	}
 }
+alarm 0;
 my $end = time();
 my $time = $end - $start;
 if ($time > 30) {
-    my @content = &_DB("/flag.txt");
+	my @content = &_DB("/flag.txt");
 	$res = "Content-type: text/plain\n\n$content[0]\n";
 }
 print $res;

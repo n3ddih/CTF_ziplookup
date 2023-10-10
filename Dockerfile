@@ -19,4 +19,6 @@ COPY ./cgi-bin /usr/lib/cgi-bin
 COPY ./www /var/www/html
 COPY ./flag.txt /flag.txt
 
+RUN chmod +x /usr/lib/cgi-bin/search.cgi
+
 CMD /usr/sbin/apache2ctl -D FOREGROUND

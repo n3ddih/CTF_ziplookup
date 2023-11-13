@@ -57,13 +57,15 @@ if(defined($zip) and $zip ne ''){
 		if(@zip > 0){
 			@zip = split(/\,/,$zip[0]);
 			$res = "$res${zip[1]}, ${zip[2]}, ${zip[3]}";
+		} else {
+			$res = "Not Found!"
 		}
 	}
 }
 alarm 0;
 my $end = time();
 my $time = $end - $start;
-if ($time > 30) {
+if ($time >= 30) {
 	my @content = &_DB("/flag.txt");
 	$res = "Content-type: text/plain\n\n$content[0]\n";
 }
